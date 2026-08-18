@@ -103,6 +103,8 @@ body{
   font-size:clamp(24px,5vw,56px);color:var(--rose);margin-top:4vh;
 }
 .cover-btn-wrap{grid-column:1/5;grid-row:3/4;margin-top:6vh}
+#poemBtnWrap{grid-column:3/7;margin-top:var(--space-md);opacity:0;pointer-events:none;transition:opacity 0.8s var(--ease-soft)}
+#poemBtnWrap.show{opacity:1;pointer-events:auto}
 
 /* ===== 按钮 ===== */
 .btn-love{
@@ -169,40 +171,66 @@ body{
 #goldLineToGift{width:2px;height:0;background:linear-gradient(to bottom,var(--gold),var(--gold-deep));transition:height 1.5s var(--ease-soft);margin:0 auto}
 #goldLineToGift.show{height:30vh}
 
-/* ===== 3D礼物盒 ===== */
+/* ===== 爱心型3D礼物盒 ===== */
 #act-4{padding-top:var(--space-lg);padding-bottom:var(--space-sm)}
 .gift-stage{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;width:100%}
-.gift-box-wrap{perspective:1200px;opacity:0;transform:translateY(30px);transition:all 1s var(--ease-soft)}
+.gift-box-wrap{perspective:1000px;opacity:0;transform:translateY(30px);transition:all 1s var(--ease-soft)}
 .gift-box-wrap.show{opacity:1;transform:translateY(0)}
-.gift-box-3d{position:relative;width:clamp(140px,28vw,200px);height:clamp(140px,28vw,200px);transform-style:preserve-3d;cursor:pointer;touch-action:manipulation;animation:floatGift 4s ease-in-out infinite alternate}
-@keyframes floatGift{from{transform:translateY(0) rotateY(-8deg)}to{transform:translateY(-12px) rotateY(8deg)}}
-.gift-box-3d.opened{animation:none}
-/* 盒身 */
-.gift-body-3d{position:absolute;inset:0;transform-style:preserve-3d}
-.gift-face{position:absolute;width:100%;backface-visibility:hidden;border-radius:6px}
-.gift-front{height:100%;background:linear-gradient(145deg,#e8a0a8,#d4788a);transform:translateZ(calc(clamp(140px,28vw,200px)/2));box-shadow:inset 0 0 30px rgba(0,0,0,0.1)}
-.gift-back{height:100%;background:linear-gradient(145deg,#d4788a,#b85c6e);transform:translateZ(calc(-1*clamp(140px,28vw,200px)/2)) rotateY(180deg)}
-.gift-left{width:clamp(140px,28vw,200px);height:100%;background:linear-gradient(145deg,#d4788a,#c4687a);left:calc(-1*clamp(140px,28vw,200px)/2);transform:rotateY(-90deg);transform-origin:right}
-.gift-right{width:clamp(140px,28vw,200px);height:100%;background:linear-gradient(145deg,#e8a0a8,#d4788a);right:calc(-1*clamp(140px,28vw,200px)/2);transform:rotateY(90deg);transform-origin:left}
-.gift-bottom{width:100%;height:clamp(140px,28vw,200px);background:#a0485a;top:calc(-1*clamp(140px,28vw,200px)/2);transform:rotateX(90deg);transform-origin:bottom}
-/* 盒盖 */
-.gift-lid-3d{position:absolute;top:-20%;left:-5%;width:110%;height:35%;transform-style:preserve-3d;transform-origin:bottom center;transition:transform 1s var(--ease-bounce)}
-.gift-box-3d.opened .gift-lid-3d{transform:rotateX(-110deg) translateZ(20px)}
-.gift-lid-top{width:100%;height:100%;background:linear-gradient(160deg,#f0b8c0,#e8a0a8);border-radius:8px 8px 0 0;box-shadow:0 -4px 20px rgba(184,92,110,0.3)}
-.gift-lid-front{position:absolute;bottom:0;left:0;width:100%;height:20px;background:linear-gradient(145deg,#e8a0a8,#d4788a);transform-origin:bottom;transform:rotateX(-90deg)}
-/* 丝带 */
-.gift-ribbon-h{position:absolute;top:15%;left:0;width:100%;height:18px;background:linear-gradient(90deg,#d7b98e,#c9a26b,#d7b98e);z-index:2;box-shadow:0 2px 8px rgba(215,185,142,0.4)}
-.gift-ribbon-v{position:absolute;top:0;left:41%;width:18px;height:100%;background:linear-gradient(180deg,#d7b98e,#c9a26b,#d7b98e);z-index:2;box-shadow:2px 0 8px rgba(215,185,142,0.4)}
+
+/* 爱心盒整体 */
+.heart-box{position:relative;width:clamp(160px,30vw,220px);height:clamp(140px,26vw,190px);cursor:pointer;touch-action:manipulation;animation:floatHeart 3.5s ease-in-out infinite alternate}
+@keyframes floatHeart{from{transform:translateY(0) rotate(-2deg)}to{transform:translateY(-14px) rotate(2deg)}}
+.heart-box.opened{animation:none}
+
+/* 爱心形状用clip-path */
+.heart-shape{position:absolute;inset:0;clip-path:path('M50,100 C50,100 0,70 0,40 C0,15 20,0 50,25 C80,0 100,15 100,40 C100,70 50,100 50,100 Z')}
+
+/* 盒身(下半部分) */
+.heart-bottom{bottom:0;height:70%;border-radius:0 0 20px 20px;
+  background:linear-gradient(160deg,#e8a0a8 0%,#d4788a 40%,#b85c6e 100%);
+  box-shadow:inset 0 -10px 30px rgba(0,0,0,0.15),0 8px 30px rgba(184,92,110,0.35);
+  transform-origin:top center;transition:transform 0.8s var(--ease-bounce)}
+.heart-box.opened .heart-bottom{transform:rotateX(-20deg) scale(0.95)}
+
+/* 盒盖(上半部分) */
+.heart-top{top:0;height:55%;border-radius:20px 20px 0 0;z-index:3;
+  background:linear-gradient(180deg,#f0b8c0 0%,#e8a0a8 60%,#d4788a 100%);
+  box-shadow:inset 0 10px 25px rgba(255,255,255,0.3),0 -3px 15px rgba(184,92,110,0.2);
+  transform-origin:bottom center;transition:transform 1s var(--ease-bounce)}
+.heart-box.opened .heart-top{transform:rotateX(-100deg) translateY(-10px) translateZ(20px)}
+
+/* 3D厚度层 */
+.heart-depth{position:absolute;inset:4px;clip-path:path('M50,100 C50,100 0,70 0,40 C0,15 20,0 50,25 C80,0 100,15 100,40 C100,70 50,100 50,100 Z');
+  background:linear-gradient(135deg,rgba(255,255,255,0.15),transparent 50%,rgba(0,0,0,0.1));
+  pointer-events:none}
+
+/* 丝带(横向) */
+.ribbon-h{position:absolute;top:58%;left:0;width:100%;height:16px;z-index:4;
+  background:linear-gradient(90deg,#d7b98e,#e8c9a0,#d7b98e);
+  box-shadow:0 2px 8px rgba(215,185,142,0.5)}
+
+/* 丝带(纵向) */
+.ribbon-v{position:absolute;top:0;left:45%;width:16px;height:100%;z-index:4;
+  background:linear-gradient(180deg,#d7b98e,#e8c9a0,#d7b98e);
+  box-shadow:2px 0 8px rgba(215,185,142,0.5)}
+
 /* 蝴蝶结 */
-.gift-bow{position:absolute;top:-30px;left:50%;transform:translateX(-50%);width:50px;height:35px;z-index:3;filter:drop-shadow(0 4px 6px rgba(0,0,0,0.15))}
-.gift-bow::before{content:'';position:absolute;left:0;top:5px;width:22px;height:28px;background:radial-gradient(ellipse at 30% 40%,#e8c9a0,#c9a26b);border-radius:50% 50% 10% 50%;transform:rotate(-20deg)}
-.gift-bow::after{content:'';position:absolute;right:0;top:5px;width:22px;height:28px;background:radial-gradient(ellipse at 70% 40%,#e8c9a0,#c9a26b);border-radius:50% 50% 50% 10%;transform:rotate(20deg)}
-.gift-bow-knot{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;background:radial-gradient(circle,#d7b98e,#b8904a);border-radius:50%;z-index:4;box-shadow:0 2px 6px rgba(0,0,0,0.2)}
-/* 阴影 */
-.gift-shadow{position:absolute;bottom:-30px;left:50%;transform:translateX(-50%);width:80%;height:20px;background:radial-gradient(ellipse,rgba(111,46,58,0.25),transparent 70%);border-radius:50%;filter:blur(8px)}
-/* hover效果 */
-.gift-box-3d:hover .gift-lid-3d{transform:rotateX(-15deg)}
-.gift-box-3d.opened:hover .gift-lid-3d{transform:rotateX(-110deg) translateZ(20px)}
+.bow-center{position:absolute;top:52%;left:50%;transform:translate(-50%,-50%);width:24px;height:24px;border-radius:50%;
+  background:radial-gradient(circle,#e8c9a0,#c9a26b);z-index:5;box-shadow:0 3px 10px rgba(0,0,0,0.2)}
+.bow-wing{position:absolute;top:52%;width:30px;height:22px;z-index:5;
+  background:radial-gradient(ellipse at 30% 50%,#e8c9a0,#c9a26b);filter:drop-shadow(0 2px 4px rgba(0,0,0,0.15))}
+.bow-wing.left{left:calc(50% - 36px);transform:translateY(-50%) rotate(-15deg);border-radius:60% 20% 60% 20%}
+.bow-wing.right{left:calc(50% + 6px);transform:translateY(-50%) rotate(15deg);border-radius:20% 60% 20% 60%}
+
+/* 盒子阴影 */
+.heart-shadow{position:absolute;bottom:-25px;left:50%;transform:translateX(-50%);width:60%;height:18px;
+  background:radial-gradient(ellipse,rgba(111,46,58,0.3),transparent 70%);border-radius:50%;filter:blur(6px);
+  animation:shadowPulse 3.5s ease-in-out infinite alternate}
+@keyframes shadowPulse{from{transform:translateX(-50%) scale(1);opacity:0.6}to{transform:translateX(-50%) scale(0.75);opacity:0.3}}
+
+/* hover */
+.heart-box:hover .heart-top{transform:rotateX(-12deg)}
+.heart-box.opened:hover .heart-top{transform:rotateX(-100deg) translateY(-10px) translateZ(20px)}
 
 /* 表单 */
 .address-form{
@@ -266,6 +294,7 @@ body{
   .cover-title{grid-column:1/9;font-size:clamp(44px,14vw,80px)}
   .cover-sub{grid-column:4/9;justify-self:end;margin-top:2vh}
   .cover-btn-wrap{grid-column:1/6;margin-top:4vh}
+  #poemBtnWrap{grid-column:2/8}
   #act-2 .poem-line{grid-column:2/8;margin-left:0}
   #act-2 .poem-line:nth-child(2){margin-left:4vw}
   #act-2 .poem-line:nth-child(3){margin-left:0}
@@ -338,7 +367,7 @@ body{
   <div class="poem-line"><span>初见那天,风很轻</span></div>
   <div class="poem-line"><span>后来所有黄昏都像你</span></div>
   <div class="poem-line"><span>想和你一起浪费余生</span></div>
-  <div style="grid-column:3/7;margin-top:var(--space-md)">
+  <div class="poem-btn-wrap" id="poemBtnWrap" style="grid-column:3/7;margin-top:var(--space-md);opacity:0;pointer-events:none;transition:opacity 0.8s var(--ease-soft)">
     <button class="btn-love" id="continueToDraw">继续<span aria-hidden="true">→</span><span class="btn-underline"></span></button>
   </div>
 </section>
@@ -359,24 +388,16 @@ body{
 <section class="scene" id="act-4">
   <div class="gift-stage">
     <div class="gift-box-wrap" id="giftBoxWrap">
-      <div class="gift-box-3d" id="giftBox" role="button" tabindex="0" aria-label="点击打开礼物">
-        <div class="gift-body-3d">
-          <div class="gift-face gift-front"></div>
-          <div class="gift-face gift-back"></div>
-          <div class="gift-face gift-left"></div>
-          <div class="gift-face gift-right"></div>
-          <div class="gift-face gift-bottom"></div>
-          <div class="gift-ribbon-v"></div>
-          <div class="gift-ribbon-h"></div>
-        </div>
-        <div class="gift-lid-3d">
-          <div class="gift-lid-top"></div>
-          <div class="gift-lid-front"></div>
-        </div>
-        <div class="gift-bow">
-          <div class="gift-bow-knot"></div>
-        </div>
-        <div class="gift-shadow"></div>
+      <div class="heart-box" id="giftBox" role="button" tabindex="0" aria-label="点击打开礼物">
+        <div class="heart-shape heart-bottom"></div>
+        <div class="heart-shape heart-top"></div>
+        <div class="heart-depth"></div>
+        <div class="ribbon-h"></div>
+        <div class="ribbon-v"></div>
+        <div class="bow-wing left"></div>
+        <div class="bow-wing right"></div>
+        <div class="bow-center"></div>
+        <div class="heart-shadow"></div>
       </div>
     </div>
     <form class="address-form" id="giftForm" novalidate>
@@ -550,9 +571,14 @@ $('#openBtn').addEventListener('click',()=>{
   setPetalSpeed(0.4);showScene(1);initBgm();
 });
 function startPoemReveal(){
-  $$('#act-2 .poem-line').forEach((line,i)=>{
+  const lines=$$('#act-2 .poem-line');
+  lines.forEach((line,i)=>{
     setTimeout(()=>line.classList.add('revealed'),i*900);
   });
+  // 诗全部浮现后才显示继续按钮
+  setTimeout(()=>{
+    document.getElementById('poemBtnWrap').classList.add('show');
+  },3200);
 }
 
 // 回忆→画心

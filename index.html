@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>💕 电子情书定制需求单</title>
 <style>
-:root{--bg:#FFF8F5;--primary:#D4879A;--secondary:#F4C2A9;--accent:#E8A0BF;--ink:#5A4A3A;--cream:#FFF5EE;--card:#FFFFFF;--border:#F0E0D8;--selected:#FFD6E0;--sel-text:#8B4060}
+:root{--bg:#FFF8F5;--primary:#D4879A;--secondary:#F4C2A9;--accent:#E8A0BF;--ink:#5A4A3A;--cream:#FFF5EE;--card:#FFFFFF;--border:#F0E0D8;--selected:#FFD6E0;--sel-text:#8B4060;--warning:#FF6B6B}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;min-height:100vh;padding:20px}
 .wrap{max-width:640px;margin:0 auto}
@@ -15,6 +15,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
 .pgbar{width:100%;height:4px;background:var(--border);border-radius:2px;margin:20px 0;overflow:hidden}
 .pgfill{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:2px;transition:width 0.3s;width:0%}
 .sec{background:var(--card);border-radius:16px;padding:24px;margin-bottom:16px;box-shadow:0 2px 12px rgba(0,0,0,0.04);border:1px solid var(--border)}
+.sec.highlight{border-color:var(--primary);box-shadow:0 4px 20px rgba(212,135,154,0.15)}
 .st{font-size:1.1rem;font-weight:600;color:var(--primary);margin-bottom:16px}
 .q{margin-bottom:16px}.q:last-child{margin-bottom:0}
 .ql{font-size:0.9rem;font-weight:500;margin-bottom:8px}
@@ -23,6 +24,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
 .opt{padding:8px 16px;border:1.5px solid var(--border);border-radius:20px;font-size:0.85rem;cursor:pointer;transition:all 0.2s;background:var(--card);color:var(--ink);user-select:none}
 .opt:hover{border-color:var(--accent);background:var(--cream)}
 .opt.on{border-color:var(--primary);background:var(--selected);color:var(--sel-text);font-weight:500}
+.opt.virtual.on{background:#E8D5FF;border-color:#9B59B6;color:#6C3483}
 input[type=text],textarea{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:0.9rem;font-family:inherit;background:var(--cream);color:var(--ink);transition:border-color 0.2s}
 input[type=text]:focus,textarea:focus{outline:none;border-color:var(--accent)}
 textarea{resize:vertical;min-height:80px}
@@ -36,6 +38,8 @@ textarea{resize:vertical;min-height:80px}
 .ch{font-size:0.8rem;color:#aaa;margin-top:8px;text-align:center}
 .ch.ok{color:#4CAF50}
 .ftr{text-align:center;padding:20px;color:#ccc;font-size:0.75rem}
+.vinfo{display:none;margin-top:12px;padding:12px;background:#F3E5F5;border-radius:10px;border:1px solid #E1BEE7;font-size:0.85rem;color:#6C3483;line-height:1.5}
+.vinfo.show{display:block}
 @media(max-width:480px){body{padding:12px}.sec{padding:16px}.hdr h1{font-size:1.5rem}}
 </style>
 </head>
@@ -45,58 +49,71 @@ textarea{resize:vertical;min-height:80px}
 <div class="pgbar"><div class="pgfill" id="pg"></div></div>
 
 <form id="f">
+<!-- ============ 第0位:对方身份(最重要!) ============ -->
+<div class="sec highlight" id="sec0">
+<div class="st">⚠️ 对方身份(最重要!)</div>
+<div class="q"><div class="ql">对方是</div>
+<div class="opts" data-k="targetType" id="q0">
+<div class="opt" data-v="real">真实人物</div>
+<div class="opt virtual" data-v="virtual">虚拟人物/偶像</div>
+</div></div>
+<div class="vinfo" id="vInfo">💡 虚拟人物需要输入官方名称,我们将据此学习角色风格(配色/台词/元素),确保还原度</div>
+<div class="q" id="q0bBox" style="display:none"><div class="ql">官方名称(必填,如:初音未来/洛天依/炭治郎)</div><input type="text" id="q0b" placeholder="请输入角色准确官方名称" data-k="officialName"></div>
+<div class="q" id="q0cBox" style="display:none"><div class="ql">昵称/代称(可选,怎么称呼TA)</div><input type="text" id="q0c" placeholder="如:老婆、殿下、前辈..." data-k="nickName"></div>
+</div>
+
+<!-- ============ 基础信息 ============ -->
 <div class="sec"><div class="st">📝 基础信息</div>
-<div class="q"><div class="ql">1. 对方昵称</div><input type="text" id="q1" placeholder="如:小明" data-k="partnerName"></div>
-<div class="q"><div class="ql">2. 你的名字(可选)</div><input type="text" id="q2" placeholder="如:我" data-k="yourName"></div>
-<div class="q"><div class="ql">3. 关系</div><div class="opts" data-k="relationship"><div class="opt" data-v="恋人">恋人</div><div class="opt" data-v="暗恋">暗恋</div><div class="opt" data-v="挽回">挽回</div><div class="opt" data-v="已婚">已婚</div><div class="opt" data-v="朋友">朋友</div><div class="opt" data-v="其他">其他</div></div></div>
-<div class="q"><div class="ql">4. 特殊日期(可选)</div><input type="text" id="q4" placeholder="如:2024-02-14" data-k="specialDate"></div>
-<div class="q"><div class="ql">5. 核心目的</div><div class="opts" data-k="purpose"><div class="opt" data-v="表白">表白</div><div class="opt" data-v="挽回">挽回</div><div class="opt" data-v="道歉">道歉</div><div class="opt" data-v="纪念日">纪念日</div><div class="opt" data-v="求婚">求婚</div><div class="opt" data-v="日常浪漫">日常浪漫</div><div class="opt" data-v="其他">其他</div></div></div>
+<div class="q"><div class="ql">对方昵称</div><input type="text" id="q1" placeholder="如:小明" data-k="partnerName"></div>
+<div class="q"><div class="ql">你的名字(署名用,可选)</div><input type="text" id="q2" placeholder="如:我" data-k="yourName"></div>
+<div class="q"><div class="ql">关系</div><div class="opts" data-k="relationship"><div class="opt" data-v="恋人">恋人</div><div class="opt" data-v="暗恋">暗恋</div><div class="opt" data-v="挽回">挽回</div><div class="opt" data-v="已婚">已婚</div><div class="opt" data-v="朋友">朋友</div><div class="opt" data-v="其他">其他</div></div></div>
+<div class="q"><div class="ql">特殊日期(可选)</div><input type="text" id="q4" placeholder="如:2024-02-14" data-k="specialDate"></div>
+<div class="q"><div class="ql">核心目的</div><div class="opts" data-k="purpose"><div class="opt" data-v="表白">表白</div><div class="opt" data-v="挽回">挽回</div><div class="opt" data-v="道歉">道歉</div><div class="opt" data-v="纪念日">纪念日</div><div class="opt" data-v="求婚">求婚</div><div class="opt" data-v="日常浪漫">日常浪漫</div><div class="opt" data-v="其他">其他</div></div></div>
 </div>
 
 <div class="sec"><div class="st">🎨 风格氛围</div>
-<div class="q"><div class="ql">6. 氛围</div><div class="opts" data-k="mood"><div class="opt" data-v="浪漫优雅">浪漫优雅</div><div class="opt" data-v="甜蜜治愈">甜蜜治愈</div><div class="opt" data-v="搞笑幽默">搞笑幽默</div><div class="opt" data-v="深情悲伤">深情悲伤</div><div class="opt" data-v="高级冷淡">高级冷淡</div><div class="opt" data-v="热血激情">热血激情</div></div></div>
-<div class="q"><div class="ql">7. 视觉风格(可多选)</div><div class="opts" data-k="style" data-m><div class="opt" data-v="瑞士极简">瑞士极简</div><div class="opt" data-v="现代高级">现代高级</div><div class="opt" data-v="文艺杂志">文艺杂志</div><div class="opt" data-v="日式侘寂">日式侘寂</div><div class="opt" data-v="新中式">新中式</div><div class="opt" data-v="复古胶片">复古胶片</div><div class="opt" data-v="水彩晕染">水彩晕染</div><div class="opt" data-v="手绘插画">手绘插画</div><div class="opt" data-v="森系自然">森系自然</div><div class="opt" data-v="巴洛克">巴洛克</div><div class="opt" data-v="欧式复古">欧式复古</div><div class="opt" data-v="赛博朋克">赛博朋克</div></div></div>
-<div class="q"><div class="ql">7b. 主色系(如已选风格可跳过)</div><div class="opts" data-k="colorScheme"><div class="opt" data-v="玫瑰粉+香槟金">玫瑰粉+香槟金</div><div class="opt" data-v="天空蓝+银白">天空蓝+银白</div><div class="opt" data-v="酒红+黑金">酒红+黑金</div><div class="opt" data-v="薰衣草紫">薰衣草紫</div><div class="opt" data-v="珊瑚橙">珊瑚橙</div><div class="opt" data-v="自定义">自定义</div></div></div>
+<div class="q"><div class="ql">氛围</div><div class="opts" data-k="mood"><div class="opt" data-v="浪漫优雅">浪漫优雅</div><div class="opt" data-v="甜蜜治愈">甜蜜治愈</div><div class="opt" data-v="搞笑幽默">搞笑幽默</div><div class="opt" data-v="深情悲伤">深情悲伤</div><div class="opt" data-v="高级冷淡">高级冷淡</div><div class="opt" data-v="热血激情">热血激情</div></div></div>
+<div class="q"><div class="ql">视觉风格(可多选)</div><div class="opts" data-k="style" data-m><div class="opt" data-v="瑞士极简">瑞士极简</div><div class="opt" data-v="现代高级">现代高级</div><div class="opt" data-v="文艺杂志">文艺杂志</div><div class="opt" data-v="日式侘寂">日式侘寂</div><div class="opt" data-v="新中式">新中式</div><div class="opt" data-v="复古胶片">复古胶片</div><div class="opt" data-v="水彩晕染">水彩晕染</div><div class="opt" data-v="手绘插画">手绘插画</div><div class="opt" data-v="森系自然">森系自然</div><div class="opt" data-v="巴洛克">巴洛克</div><div class="opt" data-v="欧式复古">欧式复古</div><div class="opt" data-v="赛博朋克">赛博朋克</div></div></div>
+<div class="q"><div class="ql">主色系(如已选风格可跳过)</div><div class="opts" data-k="colorScheme"><div class="opt" data-v="玫瑰粉+香槟金">玫瑰粉+香槟金</div><div class="opt" data-v="天空蓝+银白">天空蓝+银白</div><div class="opt" data-v="酒红+黑金">酒红+黑金</div><div class="opt" data-v="薰衣草紫">薰衣草紫</div><div class="opt" data-v="珊瑚橙">珊瑚橙</div><div class="opt" data-v="自定义">自定义</div></div></div>
 </div>
 
 <div class="sec"><div class="st">⚙️ 复杂度</div>
-<div class="q"><div class="ql">8. 页面复杂度</div><div class="opts" data-k="complexity"><div class="opt" data-v="极简">极简(纯文字+白底)</div><div class="opt" data-v="简单">简单(基础动效)</div><div class="opt" data-v="适中">适中(丰富动效+照片+互动)</div><div class="opt" data-v="复杂">复杂(极繁主义)</div></div></div>
+<div class="q"><div class="ql">页面复杂度</div><div class="opts" data-k="complexity"><div class="opt" data-v="极简">极简(纯文字+白底)</div><div class="opt" data-v="简单">简单(基础动效)</div><div class="opt" data-v="适中">适中(丰富动效+照片+互动)</div><div class="opt" data-v="复杂">复杂(极繁主义)</div></div></div>
 </div>
 
 <div class="sec"><div class="st">📄 页面长度</div>
-<div class="q"><div class="ql">9. 页数偏好</div><div class="opts" data-k="length"><div class="opt" data-v="轻量">轻量(3-5页)</div><div class="opt" data-v="适中">适中(5-7页)</div><div class="opt" data-v="丰富">丰富(7-10页)</div><div class="opt" data-v="超长">超长(10页以上)</div></div></div>
+<div class="q"><div class="ql">页数偏好</div><div class="opts" data-k="length"><div class="opt" data-v="轻量">轻量(3-5页)</div><div class="opt" data-v="适中">适中(5-7页)</div><div class="opt" data-v="丰富">丰富(7-10页)</div><div class="opt" data-v="超长">超长(10页以上)</div></div></div>
 </div>
 
 <div class="sec"><div class="st">📷 照片素材</div>
-<div class="q"><div class="ql">10. 照片数量</div><div class="opts" data-k="photoCount"><div class="opt" data-v="无照片">无照片</div><div class="opt" data-v="1-3张">1-3张</div><div class="opt" data-v="5-10张">5-10张</div><div class="opt" data-v="10-20张">10-20张</div><div class="opt" data-v="20张以上">20张以上</div></div></div>
-<div class="q"><div class="ql">11. 照片展示偏好</div><div class="opts" data-k="photoStyle"><div class="opt" data-v="瀑布流墙">瀑布流墙</div><div class="opt" data-v="时间线">时间线</div><div class="opt" data-v="滑动大图">滑动大图</div><div class="opt" data-v="你帮我决定">你帮我决定</div></div></div>
-<div class="q"><div class="ql">12. 无照片时占位风格</div><div class="opts" data-k="placeholder"><div class="opt" data-v="SVG插画">SVG插画</div><div class="opt" data-v="渐变几何">渐变几何</div><div class="opt" data-v="纯色留白">纯色留白</div></div></div>
+<div class="q"><div class="ql">照片数量</div><div class="opts" data-k="photoCount"><div class="opt" data-v="无照片">无照片</div><div class="opt" data-v="1-3张">1-3张</div><div class="opt" data-v="5-10张">5-10张</div><div class="opt" data-v="10-20张">10-20张</div><div class="opt" data-v="20张以上">20张以上</div></div></div>
+<div class="q"><div class="ql">照片展示偏好</div><div class="opts" data-k="photoStyle"><div class="opt" data-v="瀑布流墙">瀑布流墙</div><div class="opt" data-v="时间线">时间线</div><div class="opt" data-v="滑动大图">滑动大图</div><div class="opt" data-v="你帮我决定">你帮我决定</div></div></div>
+<div class="q"><div class="ql">无照片时占位风格</div><div class="opts" data-k="placeholder"><div class="opt" data-v="SVG插画">SVG插画</div><div class="opt" data-v="渐变几何">渐变几何</div><div class="opt" data-v="纯色留白">纯色留白</div></div></div>
 </div>
 
 <div class="sec"><div class="st">💌 文案内容</div>
-<div class="q"><div class="ql">13. 你想说的话</div><textarea id="q13" placeholder="把想说的话写下来,可以分段..." data-k="message"></textarea></div>
-<div class="q"><div class="ql">14. 文案长度</div><div class="opts" data-k="msgLength"><div class="opt" data-v="短句有力">短句有力</div><div class="opt" data-v="中等">中等</div><div class="opt" data-v="长信细腻">长信细腻</div></div></div>
+<div class="q"><div class="ql">你想说的话</div><textarea id="q13" placeholder="把想说的话写下来,可以分段..." data-k="message"></textarea></div>
+<div class="q"><div class="ql">文案长度</div><div class="opts" data-k="msgLength"><div class="opt" data-v="短句有力">短句有力</div><div class="opt" data-v="中等">中等</div><div class="opt" data-v="长信细腻">长信细腻</div></div></div>
 </div>
 
 <div class="sec"><div class="st">🎮 互动与礼物</div>
-<div class="q"><div class="ql">15. 互动环节(可多选)</div><div class="opts" data-k="interactions" data-m><div class="opt" data-v="画心">画心</div><div class="opt" data-v="拼图">拼图</div><div class="opt" data-v="点击收集">点击收集</div><div class="opt" data-v="亲吻计数器">亲吻计数器</div><div class="opt" data-v="爱情指数">爱情指数</div><div class="opt" data-v="打字机效果">打字机效果</div><div class="opt" data-v="爱心飘落">爱心飘落</div></div></div>
-<div class="q"><div class="ql">15b. 滚动叙事</div><div class="opts" data-k="scroll"><div class="opt" data-v="视差滚动">视差滚动</div><div class="opt" data-v="章节滚动">章节滚动</div><div class="opt" data-v="滚动揭示">滚动揭示</div><div class="opt" data-v="不需要">不需要</div></div></div>
-<div class="q"><div class="ql">16. 旧浏览器降级</div><div class="opts" data-k="fallback"><div class="opt" data-v="点击触发">点击屏幕即可触发</div><div class="opt" data-v="文字提示">显示文字提示无交互</div><div class="opt" data-v="你帮我决定">你帮我决定</div></div></div>
-<div class="q"><div class="ql">17. 礼物盒</div><div class="opts" data-k="gift"><div class="opt" data-v="需要">需要</div><div class="opt" data-v="不需要">不需要</div></div></div>
+<div class="q"><div class="ql">互动环节(可多选)</div><div class="opts" data-k="interactions" data-m><div class="opt" data-v="画心">画心</div><div class="opt" data-v="拼图">拼图</div><div class="opt" data-v="点击收集">点击收集</div><div class="opt" data-v="亲吻计数器">亲吻计数器</div><div class="opt" data-v="爱情指数">爱情指数</div><div class="opt" data-v="打字机效果">打字机效果</div><div class="opt" data-v="爱心飘落">爱心飘落</div></div></div>
+<div class="q"><div class="ql">滚动叙事</div><div class="opts" data-k="scroll"><div class="opt" data-v="视差滚动">视差滚动</div><div class="opt" data-v="章节滚动">章节滚动</div><div class="opt" data-v="滚动揭示">滚动揭示</div><div class="opt" data-v="不需要">不需要</div></div></div>
+<div class="q"><div class="ql">旧浏览器降级</div><div class="opts" data-k="fallback"><div class="opt" data-v="点击触发">点击屏幕即可触发</div><div class="opt" data-v="文字提示">显示文字提示无交互</div><div class="opt" data-v="你帮我决定">你帮我决定</div></div></div>
+<div class="q"><div class="ql">礼物盒</div><div class="opts" data-k="gift"><div class="opt" data-v="需要">需要</div><div class="opt" data-v="不需要">不需要</div></div></div>
 </div>
 
 <div class="sec"><div class="st">🎵 音乐</div>
-<div class="q"><div class="ql">18. 背景音乐</div><div class="opts" data-k="music"><div class="opt" data-v="你推荐">你推荐</div><div class="opt" data-v="我提供文件">我提供文件</div><div class="opt" data-v="不需要">不需要</div></div></div>
+<div class="q"><div class="ql">背景音乐</div><div class="opts" data-k="music"><div class="opt" data-v="你推荐">你推荐</div><div class="opt" data-v="我提供文件">我提供文件</div><div class="opt" data-v="不需要">不需要</div></div></div>
 </div>
 
 <div class="sec"><div class="st">🎯 最终行动</div>
-<div class="q"><div class="ql">19. 想让TA做什么</div><div class="opts" data-k="action"><div class="opt" data-v="填写地址">填写地址</div><div class="opt" data-v="回复一句话">回复一句话</div><div class="opt" data-v="跳转链接">跳转链接</div><div class="opt" data-v="只是看完">只是看完</div></div></div>
+<div class="q"><div class="ql">想让TA做什么</div><div class="opts" data-k="action"><div class="opt" data-v="填写地址">填写地址</div><div class="opt" data-v="回复一句话">回复一句话</div><div class="opt" data-v="跳转链接">跳转链接</div><div class="opt" data-v="只是看完">只是看完</div></div></div>
 </div>
 
 <div class="sec"><div class="st">🔧 高级选项</div>
-<div class="q"><div class="ql">20. 页面语言</div><div class="opts" data-k="language"><div class="opt" data-v="中文简体">中文简体</div><div class="opt" data-v="中文繁体">中文繁体</div><div class="opt" data-v="英文">英文</div><div class="opt" data-v="日语">日语</div><div class="opt" data-v="其他">其他</div></div></div>
-<div class="q"><div class="ql">21. 字体风格偏好</div><div class="opts" data-k="font"><div class="opt" data-v="优雅衬线">优雅衬线</div><div class="opt" data-v="现代无衬线">现代无衬线</div><div class="opt" data-v="复古装饰">复古装饰</div><div class="opt" data-v="手写体">手写体</div><div class="opt" data-v="你帮我搭配">你帮我搭配</div></div></div>
-<div class="q"><div class="ql">22. 对方是</div><div class="opts" data-k="target"><div class="opt" data-v="真实人物">真实人物</div><div class="opt" data-v="虚拟人物/偶像">虚拟人物/偶像</div></div></div>
+<div class="q"><div class="ql">页面语言</div><div class="opts" data-k="language"><div class="opt" data-v="中文简体">中文简体</div><div class="opt" data-v="中文繁体">中文繁体</div><div class="opt" data-v="英文">英文</div><div class="opt" data-v="日语">日语</div><div class="opt" data-v="其他">其他</div></div></div>
+<div class="q"><div class="ql">字体风格偏好</div><div class="opts" data-k="font"><div class="opt" data-v="优雅衬线">优雅衬线</div><div class="opt" data-v="现代无衬线">现代无衬线</div><div class="opt" data-v="复古装饰">复古装饰</div><div class="opt" data-v="手写体">手写体</div><div class="opt" data-v="你帮我搭配">你帮我搭配</div></div></div>
 </div>
 
 <button type="button" class="btn" id="btn">💝 生成配置代码</button>
@@ -107,12 +124,21 @@ textarea{resize:vertical;min-height:80px}
 </div>
 
 <script>
+// 选项点击交互
 document.querySelectorAll('.opts').forEach(g=>{
     const m=g.dataset.m==='true';
     g.querySelectorAll('.opt').forEach(o=>{
         o.addEventListener('click',()=>{
             if(m){o.classList.toggle('on')}
             else{g.querySelectorAll('.opt').forEach(x=>x.classList.remove('on'));o.classList.add('on')}
+            // 虚拟人物选择后显示额外输入框
+            if(g.dataset.k==='targetType'){
+                const isVirtual=o.dataset.v==='virtual'&&o.classList.contains('on');
+                document.getElementById('vInfo').classList.toggle('show',isVirtual);
+                document.getElementById('q0bBox').style.display=isVirtual?'block':'none';
+                document.getElementById('q0cBox').style.display=isVirtual?'block':'none';
+                document.getElementById('sec0').classList.toggle('highlight',!g.querySelector('.opt.on'));
+            }
             up()
         })
     })
@@ -121,7 +147,7 @@ document.querySelectorAll('input[type=text],textarea').forEach(i=>i.addEventList
 function up(){
     let f=0;document.querySelectorAll('.opts').forEach(g=>{if(g.querySelector('.opt.on'))f++});
     document.querySelectorAll('input[type=text],textarea').forEach(i=>{if(i.value.trim())f++});
-    document.getElementById('pg').style.width=Math.min(100,Math.round(f/22*100))+'%'
+    document.getElementById('pg').style.width=Math.min(100,Math.round(f/24*100))+'%'
 }
 document.getElementById('btn').addEventListener('click',()=>{
     const c={};
@@ -133,6 +159,11 @@ document.getElementById('btn').addEventListener('click',()=>{
     document.querySelectorAll('input[type=text],textarea').forEach(i=>{
         if(i.dataset.k&&i.value.trim())c[i.dataset.k]=i.value.trim()
     });
+    // 验证虚拟人物必须填官方名称
+    if(c.targetType==='virtual'&&!c.officialName){
+        alert('⚠️ 虚拟人物必须输入官方名称,以便我们学习角色风格!');
+        document.getElementById('q0b').focus();return
+    }
     const code='ELC:v1:'+btoa(unescape(encodeURIComponent(JSON.stringify(c))));
     document.getElementById('rc').textContent=code;
     document.getElementById('rs').classList.add('show');

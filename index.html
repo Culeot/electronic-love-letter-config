@@ -41,6 +41,7 @@ textarea{resize:vertical;min-height:80px}
 .info.show{display:block}
 .ftr{text-align:center;padding:20px;color:#ccc;font-size:0.75rem}
 .step-badge{display:inline-block;background:var(--primary);color:white;font-size:0.7rem;padding:2px 8px;border-radius:10px;margin-right:8px}
+.photo-tip{margin-top:16px;padding:12px;background:#E8F5E9;border-radius:10px;border:1px solid #C8E6C9;font-size:0.85rem;color:#2E7D32;line-height:1.5;text-align:center}
 @media(max-width:480px){body{padding:12px}.sec{padding:16px}.hdr h1{font-size:1.5rem}}
 </style>
 </head>
@@ -50,6 +51,9 @@ textarea{resize:vertical;min-height:80px}
 <div class="pgbar"><div class="pgfill" id="pg"></div></div>
 
 <form id="f">
+<!-- ============ 照片提示(始终显示) ============ -->
+<div class="photo-tip">📷 <strong>有想放在照片里的图片?</strong> 生成代码后一起发给我,我帮你加进去~</div>
+
 <!-- ============ 第0关:对方身份(最重要!) ============ -->
 <div class="sec active highlight" id="sec0">
 <div class="st"><span class="step-badge">第0关</span>对方身份(最重要!)</div>

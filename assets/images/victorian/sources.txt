@@ -1,0 +1,56 @@
+# 欧式复古/维多利亚风格素材来源
+# 风格ID: victorian
+# 收集日期: 2026-08-19
+# 来源: Unsplash (免费可商用, Unsplash License)
+
+## 图片列表
+
+1. victorian_01_ornate_building.jpg
+   - 来源: https://unsplash.com/s/photos/victorian-architecture
+   - Photo ID: photo-1576525390218-1f9f706684cf
+   - 关键词: victorian architecture, ornate building
+
+2. victorian_02_historic_house.jpg
+   - 来源: https://unsplash.com/s/photos/victorian-architecture
+   - Photo ID: photo-1677207857573-cf0743756077
+   - 关键词: historic house, victorian style
+
+3. victorian_03_london_museum.jpg
+   - 来源: https://unsplash.com/s/photos/victorian-architecture
+   - Photo ID: photo-1640018098462-e7157483c90f
+   - 关键词: london museum, victorian gothic
+
+4. victorian_04_architecture_detail.jpg
+   - 来源: https://unsplash.com/s/photos/victorian-architecture
+   - Photo ID: photo-1492889971304-ac16ab4a4a5a
+   - 关键词: architecture detail, victorian ornate
+
+5. victorian_05_victorian_house.jpg
+   - 来源: https://unsplash.com/s/photos/victorian-architecture
+   - Photo ID: photo-1610957089605-8e37de9f0900
+   - 关键词: victorian house, ornate detail
+
+6. victorian_06_vintage_letter.jpg
+   - 来源: https://unsplash.com/s/photos/vintage-letter-feather-quill
+   - Photo ID: photo-1643377533006-2fd9216c0e97
+   - 关键词: vintage letter, old paper
+
+7. victorian_07_feather_quill.jpg
+   - 来源: https://unsplash.com/s/photos/vintage-letter-feather-quill
+   - Photo ID: photo-1643377525032-0fb68a40f237
+   - 关键词: feather quill, ink writing
+
+8. victorian_08_old_paper.jpg
+   - 来源: https://unsplash.com/s/photos/vintage-letter-feather-quill
+   - Photo ID: photo-1551127481-43279ba6dec4
+   - 关键词: old paper, parchment texture
+
+## 搜索关键词
+- victorian architecture
+- victorian ornate frame
+- london natural history museum
+- vintage letter
+- feather quill ink
+
+## 许可证
+Unsplash License - 免费用于商业和非商业用途,无需署名(但推荐)

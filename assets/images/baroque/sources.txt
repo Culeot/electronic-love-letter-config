@@ -1,0 +1,67 @@
+# 巴洛克/洛可可风格素材来源
+# 风格ID: baroque
+# 收集日期: 2026-08-19
+# 来源: Unsplash (免费可商用, Unsplash License)
+
+## 图片列表
+
+1. baroque_01_dome_interior.jpg
+   - 来源: https://unsplash.com/photos/dome-building-interior-pbwLrrsHF1M
+   - Photo ID: photo-1559246003-f70f1d16c169
+   - 关键词: baroque architecture, dome interior
+
+2. baroque_02_ornate_church.jpg
+   - 来源: https://unsplash.com/photos/gold-and-white-concrete-building-dQvc_IgBB40
+   - Photo ID: photo-1624492122184-47b2b722e5d9
+   - 关键词: ornate church, baroque building
+
+3. baroque_03_golden_altar.jpg
+   - 来源: https://unsplash.com/photos/a-large-ornate-church-with-a-clock-on-the-wall-_RfnhXllYFI
+   - Photo ID: photo-1695071565382-d039fa81ade4
+   - 关键词: golden altar, baroque church
+
+4. baroque_04_ceiling_fresco.jpg
+   - 来源: https://unsplash.com/photos/white-and-brown-concrete-building-interior-0Z9KLLXhoG8
+   - Photo ID: photo-1711315063056-298d7696d417
+   - 关键词: ceiling fresco, baroque interior
+
+5. baroque_05_chapel_gold.jpg
+   - 来源: https://unsplash.com/photos/a-church-with-a-large-alter-in-the-middle-of-it-rmClL7n6LDg
+   - Photo ID: photo-1719182838180-d9239d9a4f33
+   - 关键词: chapel, gold decoration
+
+6. baroque_06_versailles_hall.jpg
+   - 来源: https://unsplash.com/photos/a-fountain-with-statues-and-water-in-front-of-a-building-oAaj82io-2k
+   - Photo ID: photo-1709225357654-6d394858d856
+   - 关键词: versailles, hall of mirrors
+
+7. baroque_07_rococo_decoration.jpg
+   - 来源: https://unsplash.com/photos/gold-and-white-concrete-building-WxZlhLmYVTc
+   - Photo ID: photo-1603525689518-1d8c608e5cbe
+   - 关键词: rococo decoration, gold ornament
+
+8. baroque_08_gilded_frame.jpg
+   - 来源: https://unsplash.com/photos/a-tall-building-with-statues-on-the-side-of-it-IdY1J7h1vwQ
+   - Photo ID: photo-1565964450734-c6b267945d7a
+   - 关键词: gilded frame, baroque detail
+
+9. baroque_09_gold_ornament.jpg
+   - 来源: https://unsplash.com/s/photos/gold-ornament-frame-baroque
+   - Photo ID: photo-1718635310388-880694939769
+   - 关键词: gold ornament, baroque frame
+
+10. baroque_10_rococo_frame.jpg
+   - 来源: https://unsplash.com/s/photos/gold-ornament-frame-baroque
+   - Photo ID: photo-1679930963751-454d67343f0f
+   - 关键词: rococo frame, ornate decoration
+
+## 搜索关键词
+- baroque architecture
+- versailles hall of mirrors
+- rococo decoration
+- gold ornament frame
+- baroque church
+- old testament engraving
+
+## 许可证
+Unsplash License - 免费用于商业和非商业用途,无需署名(但推荐)

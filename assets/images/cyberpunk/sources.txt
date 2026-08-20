@@ -1,0 +1,57 @@
+# 赛博朋克/故障艺术风格素材来源
+# 风格ID: cyberpunk
+# 收集日期: 2026-08-19
+# 来源: Unsplash (免费可商用, Unsplash License)
+
+## 图片列表
+
+1. cyberpunk_01_neon_city.jpg
+   - 来源: https://unsplash.com/s/photos/cyberpunk-neon-city
+   - Photo ID: photo-1672872476232-da16b45c9001
+   - 关键词: cyberpunk, neon city
+
+2. cyberpunk_02_tokyo_neon.jpg
+   - 来源: https://unsplash.com/s/photos/cyberpunk-neon-city
+   - Photo ID: photo-1602136773736-34d445b989cb
+   - 关键词: tokyo, neon lights
+
+3. cyberpunk_03_night_city.jpg
+   - 来源: https://unsplash.com/s/photos/cyberpunk-neon-city
+   - Photo ID: photo-1542416409-400da26855b5
+   - 关键词: night city, cyberpunk
+
+4. cyberpunk_04_neon_lights.jpg
+   - 来源: https://unsplash.com/s/photos/cyberpunk-neon-city
+   - Photo ID: photo-1625632019469-108132f8fc60
+   - 关键词: neon lights, cityscape
+
+5. cyberpunk_05_cyber_street.jpg
+   - 来源: https://unsplash.com/s/photos/cyberpunk-neon-city
+   - Photo ID: photo-1601042879364-f3947d3f9c16
+   - 关键词: cyberpunk street, urban
+
+6. cyberpunk_06_neon_signs.jpg
+   - 来源: https://unsplash.com/s/photos/cyberpunk-neon-city
+   - Photo ID: photo-1519608487953-e999c86e7455
+   - 关键词: neon signs, tokyo night
+
+7. cyberpunk_07_hong_kong.jpg
+   - 来源: https://unsplash.com/s/photos/cyberpunk-neon-city
+   - Photo ID: photo-1557515126-1bf9ada5cb93
+   - 关键词: hong kong, kowloon
+
+8. cyberpunk_08_glitch_art.jpg
+   - 来源: https://unsplash.com/s/photos/cyberpunk-neon-city
+   - Photo ID: photo-1531931477284-7e16215c9540
+   - 关键词: glitch art, digital distortion
+
+## 搜索关键词
+- cyberpunk city
+- neon tokyo
+- hong kong kowloon
+- glitch art
+- circuit board
+- vhs scan lines
+
+## 许可证
+Unsplash License - 免费用于商业和非商业用途,无需署名(但推荐)

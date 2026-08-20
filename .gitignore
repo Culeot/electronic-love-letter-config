@@ -1,0 +1,8 @@
+# 内部备份/过程文件(不推送)
+*.backup-*.html
+*.backup.html
+backup/
+STATE.md
+CHANGELOG.md
+.npmrc
+node_modules/

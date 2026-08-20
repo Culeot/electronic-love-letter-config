@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>💕 极繁主义测试 · 巴洛克欧式复古</title>
+<style>
+:root {
+    --bg: #1A0E0A;
+    --primary: #C9A96E;
+    --secondary: #8B4513;
+    --accent: #D4AF37;
+    --ink: #F5E6D3;
+    --cream: #2C1810;
+    --gold: #D4AF37;
+    --gold-deep: #B8960C;
+    --wine: #7A2030;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+    width: 100%; height: 100%;
+    overflow: hidden;
+    position: fixed;
+    touch-action: none;
+    font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ===== 极繁主义边框装饰 ===== */
+.scene {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    overflow: hidden;
+}
+.scene.active { display: flex; }
+
+/* 巴洛克金边框 */
+.scene::before {
+    content: '';
+    position: absolute;
+    top: 15px; left: 15px; right: 15px; bottom: 15px;
+    border: 2px solid var(--gold-deep);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+    border-radius: 4px;
+}
+.scene::after {
+    content: '❦';
+    position: absolute;
+    top: 6px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.6rem;
+    color: var(--gold);
+    z-index: 2;
+    background: var(--bg);
+    padding: 0 12px;
+}
+
+/* 角落卷草纹 */
+.corner-deco {
+    position: absolute;
+    width: 80px; height: 80px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+}
+.corner-deco.tl { top: 20px; left: 20px; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+.corner-deco.tr { top: 20px; right: 20px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+.corner-deco.bl { bottom: 20px; left: 20px; border-bottom: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+.corner-deco.br { bottom: 20px; right: 20px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+
+/* 背景网格 */
+body {
+    background-image:
+        linear-gradient(rgba(215,185,142,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(215,185,142,0.06) 1px, transparent 1px);
+    background-size: 30px 30px;
+}
+
+/* 标题 */
+.title-main {
+    font-family: 'Cinzel', 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 8px rgba(212,175,55,0.3);
+    letter-spacing: 0.05em;
+}
+.subtitle {
+    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 24px;
+    font-style: italic;
+}
+
+/* 内容区 */
+.content {
+    max-width: 600px;
+    text-align: center;
+    z-index: 2;
+    position: relative;
+}
+.content p {
+    font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+    margin-bottom: 12px;
+    color: var(--ink);
+}
+
+/* 按钮 */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+    color: var(--bg);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 8px;
+    transition: all 0.3s ease;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.05em;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,175,55,0.4); }
+.btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--gold);
+    color: var(--gold);
+}
+.btn-outline:hover { background: rgba(212,175,55,0.1); }
+
+/* 导航点 */
+.nav-dots {
+    position: fixed;
+    bottom: 20px; left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+}
+.nav-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: rgba(212,175,55,0.3);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.nav-dot.active { background: var(--gold); transform: scale(1.3); }
+
+/* 互动区 */
+.interaction-area {
+    width: 100%;
+    max-width: 500px;
+    min-height: 200px;
+    margin: 20px auto;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 画心Canvas */
+#heartCanvas {
+    border: 2px solid var(--gold);
+    border-radius: 10px;
+    cursor: crosshair;
+    background: rgba(0,0,0,0.3);
+}
+
+/* 拼图 */
+.puzzle-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    width: 240px; height: 240px;
+    margin: 10px auto;
+}
+.puzzle-cell {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: var(--ink);
+}
+.puzzle-cell:hover { transform: scale(1.05); box-shadow: 0 0 12px var(--gold); }
+.puzzle-cell.empty { background: transparent; border: 1px dashed rgba(212,175,55,0.3); }
+
+/* 计数器 */
+.counter-display {
+    font-size: 3rem;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    margin: 10px 0;
+}
+.counter-btn {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--wine), #4A1020);
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    transition: all 0.3s;
+}
+.counter-btn:hover { transform: scale(1.1); box-shadow: 0 0 20px var(--gold); }
+
+/* 点击收集区 */
+.collect-area {
+    width: 280px; height: 280px;
+    position: relative;
+    border: 2px solid var(--gold);
+    border-radius: 10px;
+    background: rgba(0,0,0,0.2);
+    overflow: hidden;
+    cursor: crosshair;
+}
+.falling-item {
+    position: absolute;
+    font-size: 1.5rem;
+    pointer-events: none;
+    animation: fallDown linear forwards;
+}
+@keyframes fallDown {
+    0% { transform: translateY(-30px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(280px) rotate(360deg); opacity: 0; }
+}
+
+/* 爱情指数 */
+.meter-container {
+    width: 260px;
+    height: 30px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 15px;
+    border: 2px solid var(--gold);
+    overflow: hidden;
+    margin: 15px auto;
+    position: relative;
+}
+.meter-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--wine), var(--gold));
+    border-radius: 13px;
+    transition: width 1.5s ease;
+    width: 0%;
+}
+.meter-text {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    margin-top: 8px;
+}
+
+/* 金色粒子 */
+.particle {
+    position: absolute;
+    width: 4px; height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: floatUp linear infinite;
+}
+@keyframes floatUp {
+    0% { transform: translateY(100vh) scale(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-20px) scale(1); opacity: 0; }
+}
+
+/* 火漆印章 */
+.seal {
+    width: 80px; height: 80px;
+    background: linear-gradient(135deg, var(--wine), #4A1020);
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    margin: 15px auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+/* 打字机效果 */
+.typewriter-text {
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    color: var(--ink);
+    min-height: 60px;
+    text-align: center;
+    border-right: 2px solid var(--gold);
+    padding-right: 5px;
+    animation: blink 0.8s infinite;
+}
+@keyframes blink { 0%,100% { border-color: var(--gold); } 50% { border-color: transparent; } }
+
+/* 响应式 */
+@media (max-width: 480px) {
+    .scene { padding: 25px 20px; }
+    .content { max-width: 100%; }
+    .puzzle-grid { width: 180px; height: 180px; }
+    .collect-area { width: 220px; height: 220px; }
+}
+</style>
+</head>
+<body>
+
+<!-- 粒子容器 -->
+<div id="particles"></div>
+
+<!-- ========== 场景1:封面 ========== -->
+<div class="scene active" id="scene-0">
+    <div class="corner-deco tl"></div><div class="corner-deco tr"></div>
+    <div class="corner-deco bl"></div><div class="corner-deco br"></div>
+    <div class="content">
+        <h1 class="title-main">💕 To My Beloved</h1>
+        <p class="subtitle">A Letter Written in Gold & Love</p>
+        <p>In the grand hall of my heart, your name is etched in gold...</p>
+        <p style="margin-top:30px"><button class="btn" onclick="goScene(1)">Open the Letter ❦</button></p>
+    </div>
+</div>
+
+<!-- ========== 场景2:情书正文(打字机) ========== -->
+<div class="scene" id="scene-1">
+    <div class="corner-deco tl"></div><div class="corner-deco tr"></div>
+    <div class="corner-deco bl"></div><div class="corner-deco br"></div>
+    <div class="content">
+        <h2 class="title-main" style="font-size:1.5rem">My Dearest...</h2>
+        <div class="typewriter-text" id="typewriter"></div>
+        <p style="margin-top:20px"><button class="btn btn-outline" onclick="goScene(2)">Next ❦</button></p>
+    </div>
+</div>
+
+<!-- ========== 场景3:画心互动 ========== -->
+<div class="scene" id="scene-2">
+    <div class="corner-deco tl"></div><div class="corner-deco tr"></div>
+    <div class="corner-deco bl"></div><div class="corner-deco br"></div>
+    <div class="content">
+        <h2 class="title-main" style="font-size:1.3rem">Draw Your Heart</h2>
+        <p>Draw a heart below with your finger...</p>
+        <canvas id="heartCanvas" width="300" height="200"></canvas>
+        <p style="margin-top:10px"><button class="btn" onclick="clearHeart()">Clear</button> <button class="btn btn-outline" onclick="goScene(3)">Next ❦</button></p>
+    </div>
+</div>
+
+<!-- ========== 场景4:拼图互动 ========== -->
+<div class="scene" id="scene-3">
+    <div class="corner-deco tl"></div><div class="corner-deco tr"></div>
+    <div class="corner-deco bl"></div><div class="corner-deco br"></div>
+    <div class="content">
+        <h2 class="title-main" style="font-size:1.3rem">Love Puzzle</h2>
+        <p>Click two cells to swap them!</p>
+        <div class="puzzle-grid" id="puzzleGrid"></div>
+        <p><button class="btn btn-outline" onclick="goScene(4)">Next ❦</button></p>
+    </div>
+</div>
+
+<!-- ========== 场景5:亲吻计数器 ========== -->
+<div class="scene" id="scene-4">
+    <div class="corner-deco tl"></div><div class="corner-deco tr"></div>
+    <div class="corner-deco bl"></div><div class="corner-deco br"></div>
+    <div class="content">
+        <h2 class="title-main" style="font-size:1.3rem">Kiss Counter</h2>
+        <p>Tap the heart for kisses!</p>
+        <div class="counter-display" id="kissCount">0</div>
+        <button class="counter-btn" id="kissBtn">💋</button>
+        <p style="margin-top:15px"><button class="btn btn-outline" onclick="goScene(5)">Next ❦</button></p>
+    </div>
+</div>
+
+<!-- ========== 场景6:点击收集 ========== -->
+<div class="scene" id="scene-5">
+    <div class="corner-deco tl"></div><div class="corner-deco tr"></div>
+    <div class="corner-deco bl"></div><div class="corner-deco br"></div>
+    <div class="content">
+        <h2 class="title-main" style="font-size:1.3rem">Collect Hearts</h2>
+        <p>Tap the falling hearts!</p>
+        <div class="collect-area" id="collectArea"></div>
+        <p id="collectScore">Score: 0</p>
+        <p><button class="btn btn-outline" onclick="goScene(6)">Next ❦</button></p>
+    </div>
+</div>
+
+<!-- ========== 场景7:爱情指数 ========== -->
+<div class="scene" id="scene-6">
+    <div class="corner-deco tl"></div><div class="corner-deco tr"></div>
+    <div class="corner-deco bl"></div><div class="corner-deco br"></div>
+    <div class="content">
+        <h2 class="title-main" style="font-size:1.3rem">Love Meter</h2>
+        <p>Calculating your compatibility...</p>
+        <div class="meter-container"><div class="meter-fill" id="meterFill"></div></div>
+        <div class="meter-text" id="meterText">0%</div>
+        <p style="margin-top:15px"><button class="btn" onclick="calculateMeter()">Calculate</button> <button class="btn btn-outline" onclick="goScene(7)">Next ❦</button></p>
+    </div>
+</div>
+
+<!-- ========== 场景8:礼物盒 ========== -->
+<div class="scene" id="scene-7">
+    <div class="corner-deco tl"></div><div class="corner-deco tr"></div>
+    <div class="corner-deco bl"></div><div class="corner-deco br"></div>
+    <div class="content">
+        <h2 class="title-main" style="font-size:1.3rem">A Gift For You</h2>
+        <div class="seal">SEAL<br>✦<br>LOVE</div>
+        <p>Open the box...</p>
+        <p style="margin-top:15px"><button class="btn" onclick="openGift()">Open 🎁</button></p>
+    </div>
+</div>
+
+<!-- ========== 场景9:结尾 ========== -->
+<div class="scene" id="scene-8">
+    <div class="corner-deco tl"></div><div class="corner-deco tr"></div>
+    <div class="corner-deco bl"></div><div class="corner-deco br"></div>
+    <div class="content">
+        <h1 class="title-main">Forever Yours</h1>
+        <p class="subtitle">In this life and the next...</p>
+        <p style="margin-top:20px">With all my love,<br>Forever yours 💕</p>
+        <div class="seal" style="margin-top:20px">FIN<br>❦<br>∞</div>
+    </div>
+</div>
+
+<!-- 导航点 -->
+<div class="nav-dots" id="navDots"></div>
+
+<script>
+// ===== 场景导航 =====
+let currentScene = 0;
+const totalScenes = 9;
+
+function goScene(n) {
+    document.getElementById('scene-' + currentScene).classList.remove('active');
+    document.getElementById('scene-' + n).classList.add('active');
+    currentScene = n;
+    updateNavDots();
+    if (n === 1) startTypewriter();
+    if (n === 3) initPuzzle();
+    if (n === 5) startCollect();
+}
+
+function updateNavDots() {
+    const nav = document.getElementById('navDots');
+    nav.innerHTML = '';
+    for (let i = 0; i < totalScenes; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'nav-dot' + (i === currentScene ? ' active' : '');
+        dot.onclick = () => goScene(i);
+        nav.appendChild(dot);
+    }
+}
+updateNavDots();
+
+// ===== 打字机效果 =====
+const typewriterText = "Every moment with you feels like a dream I never want to wake from. You are my sunshine in the darkest days, my stars in the night sky. I love you beyond words...";
+let twIndex = 0;
+function startTypewriter() {
+    twIndex = 0;
+    document.getElementById('typewriter').textContent = '';
+    const interval = setInterval(() => {
+        if (twIndex < typewriterText.length) {
+            document.getElementById('typewriter').textContent += typewriterText[twIndex];
+            twIndex++;
+        } else {
+            clearInterval(interval);
+        }
+    }, 60);
+}
+
+// ===== 画心Canvas =====
+const canvas = document.getElementById('heartCanvas');
+const ctx = canvas.getContext('2d');
+let drawing = false;
+canvas.addEventListener('mousedown', e => { drawing = true; ctx.beginPath(); ctx.offsetX = e.offsetX; ctx.offsetY = e.offsetY; });
+canvas.addEventListener('mousemove', e => {
+    if (!drawing) return;
+    ctx.strokeStyle = '#D4AF37';
+    ctx.lineWidth = 3;
+    ctx.lineCap = 'round';
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(e.offsetX, e.offsetY);
+});
+canvas.addEventListener('mouseup', () => { drawing = false; ctx.beginPath(); });
+canvas.addEventListener('touchstart', e => { e.preventDefault(); drawing = true; }, {passive: false});
+canvas.addEventListener('touchmove', e => { e.preventDefault(); }, {passive: false});
+function clearHeart() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+// ===== 拼图 =====
+let puzzleCells = [1,2,3,4,5,6,7,8,null];
+let selectedCell = null;
+function initPuzzle() {
+    // Shuffle
+    puzzleCells = puzzleCells.sort(() => Math.random() - 0.5);
+    renderPuzzle();
+}
+function renderPuzzle() {
+    const grid = document.getElementById('puzzleGrid');
+    grid.innerHTML = '';
+    puzzleCells.forEach((val, i) => {
+        const cell = document.createElement('div');
+        cell.className = 'puzzle-cell' + (val === null ? ' empty' : '');
+        cell.textContent = val || '';
+        cell.onclick = () => handlePuzzleClick(i);
+        grid.appendChild(cell);
+    });
+}
+function handlePuzzleClick(idx) {
+    if (selectedCell === null) {
+        selectedCell = idx;
+        document.querySelectorAll('.puzzle-cell')[idx].style.boxShadow = '0 0 15px #D4AF37';
+    } else {
+        // Swap
+        [puzzleCells[selectedCell], puzzleCells[idx]] = [puzzleCells[idx], puzzleCells[selectedCell]];
+        selectedCell = null;
+        renderPuzzle();
+    }
+}
+
+// ===== 亲吻计数器 =====
+let kissCount = localStorage.getItem('kissCount') || 0;
+document.getElementById('kissCount').textContent = kissCount;
+document.getElementById('kissBtn').onclick = function() {
+    kissCount++;
+    localStorage.setItem('kissCount', kissCount);
+    document.getElementById('kissCount').textContent = kissCount;
+    // Heart burst
+    for (let i = 0; i < 5; i++) {
+        const heart = document.createElement('div');
+        heart.textContent = '❤️';
+        heart.style.cssText = `position:absolute;left:${50+Math.random()*40-20}%;top:50%;font-size:1.5rem;animation:fallDown 1s forwards;pointer-events:none;`;
+        document.getElementById('scene-4').appendChild(heart);
+        setTimeout(() => heart.remove(), 1000);
+    }
+};
+
+// ===== 点击收集 =====
+let collectScore = 0;
+function startCollect() {
+    collectScore = 0;
+    document.getElementById('collectScore').textContent = 'Score: 0';
+    const area = document.getElementById('collectArea');
+    area.onclick = e => {
+        const rect = area.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        // Check collision with falling items
+        document.querySelectorAll('.falling-item').forEach(item => {
+            const ir = item.getBoundingClientRect();
+            if (e.clientX >= ir.left && e.clientX <= ir.right && e.clientY >= ir.top && e.clientY <= ir.bottom) {
+                item.remove();
+                collectScore++;
+                document.getElementById('collectScore').textContent = 'Score: ' + collectScore;
+            }
+        });
+    };
+    // Spawn falling items
+    const spawnInterval = setInterval(() => {
+        if (currentScene !== 5) { clearInterval(spawnInterval); return; }
+        const item = document.createElement('div');
+        item.className = 'falling-item';
+        item.textContent = ['❤️','💕','✨','🌸'][Math.floor(Math.random()*4)];
+        item.style.left = Math.random() * 250 + 'px';
+        item.style.animationDuration = (2 + Math.random() * 2) + 's';
+        document.getElementById('collectArea').appendChild(item);
+        setTimeout(() => item.remove(), 4000);
+    }, 600);
+}
+
+// ===== 爱情指数 =====
+function calculateMeter() {
+    const pct = 75 + Math.floor(Math.random() * 25);
+    document.getElementById('meterFill').style.width = pct + '%';
+    document.getElementById('meterText').textContent = pct + '% Compatible!';
+}
+
+// ===== 礼物盒 =====
+function openGift() {
+    alert('🎁 Surprise! You are the gift of my life! 💕');
+}
+
+// ===== 金色粒子 =====
+function createParticles() {
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 20; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.animationDuration = (4 + Math.random() * 4) + 's';
+        p.style.animationDelay = Math.random() * 4 + 's';
+        container.appendChild(p);
+    }
+}
+createParticles();
+</script>
+</body>
+</html>

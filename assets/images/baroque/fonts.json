@@ -1,0 +1,54 @@
+{
+  "styleId": "baroque",
+  "styleName": "巴洛克/洛可可",
+  "description": "深棕+金+奶油白+暗红,金箔藤蔓边框,卷草纹,火漆印章",
+  "fonts": {
+    "heading": {
+      "family": "Playfair Display, Cormorant Garamond, Cinzel, serif",
+      "recommended": "Playfair Display",
+      "usage": "大标题、章节标题"
+    },
+    "body": {
+      "family": "Lora, EB Garamond, serif",
+      "recommended": "Lora",
+      "usage": "正文、段落文字"
+    },
+    "chinese": {
+      "family": "方正清刻本悦宋, 思源宋体, serif",
+      "recommended": "思源宋体",
+      "usage": "中文标题和正文"
+    },
+    "decorative": {
+      "family": "Cinzel, Great Vibes, cursive",
+      "recommended": "Cinzel",
+      "usage": "装饰性文字、首字母"
+    }
+  },
+  "googleFonts": {
+    "primary": {
+      "name": "Playfair Display",
+      "url": "https://fonts.google.com/specimen/Playfair+Display",
+      "weights": ["400", "700", "900"],
+      "link": "<link href='https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap' rel='stylesheet'>"
+    },
+    "secondary": {
+      "name": "Cormorant Garamond",
+      "url": "https://fonts.google.com/specimen/Cormorant+Garamond",
+      "weights": ["400", "500", "700"],
+      "link": "<link href='https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;700&display=swap' rel='stylesheet'>"
+    },
+    "tertiary": {
+      "name": "Cinzel",
+      "url": "https://fonts.google.com/specimen/Cinzel",
+      "weights": ["400", "700", "900"],
+      "link": "<link href='https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap' rel='stylesheet'>"
+    },
+    "body": {
+      "name": "Lora",
+      "url": "https://fonts.google.com/specimen/Lora",
+      "weights": ["400", "500", "700"],
+      "link": "<link href='https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&display=swap' rel='stylesheet'>"
+    }
+  },
+  "importSnippet": "<link href='https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@400;500;700&family=Cinzel:wght@400;700;900&family=Lora:wght@400;500;700&display=swap' rel='stylesheet'>"
+}

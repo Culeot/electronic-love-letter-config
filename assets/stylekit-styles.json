@@ -1,0 +1,33 @@
+{
+  "source": "StyleKit (stylekit.top)",
+  "url": "https://www.stylekit.top/zh/styles",
+  "totalStyles": 146,
+  "collectedAt": "2026-08-19",
+  "note": "First 24 styles extracted from page 1. Remaining styles require pagination.",
+  "styles": [
+    { "id": "neo-brutalist", "name": "新野兽派", "description": "大胆的黑色粗边框、硬边缘阴影、无圆角、高对比度配色。源于建筑野兽派，强调功能与原始美学。", "tags": ["brand-marketing", "creative-expression", "high-contrast"] },
+    { "id": "editorial", "name": "编辑杂志风", "description": "优雅的杂志排版风格，衬线标题、无衬线正文、精致的留白和网格系统。灵感来自高端时尚杂志和报纸排版。", "tags": ["editorial-magazine", "portfolio"] },
+    { "id": "neumorphism", "name": "新拟物派", "description": "柔和的内凹外凸立体效果，通过双重阴影模拟光源，浅色背景配同色系元素，营造精致的立体感。", "tags": ["saas-b2b", "brand-marketing"] },
+    { "id": "bento-grid", "name": "便当盒布局", "description": "灵感源于日式便当盒的不规则网格布局，通过大小不一的卡片组合创造视觉层次，常用于作品集和产品展示。", "tags": ["portfolio", "brand-marketing", "responsive"] },
+    { "id": "corporate-clean", "name": "企业简洁风", "description": "专业简洁的企业风格，强调可读性、一致性和信任感。适合B2B SaaS、企业官网、后台管理系统。", "tags": ["saas-b2b", "dashboard"] },
+    { "id": "minimalist-flat", "name": "极简扁平风", "description": "极致简约的扁平设计，无阴影无渐变，通过颜色和留白创造层次。适合作品集、创意机构、艺术网站。", "tags": ["portfolio", "ecommerce-retail"] },
+    { "id": "soft-ui", "name": "柔和界面风", "description": "温和友好的界面风格，柔和的阴影、圆润的边角、低饱和度的配色。适合消费类应用、社交产品、生活服务类 App。", "tags": ["saas-b2b", "brand-marketing"] },
+    { "id": "natural-organic", "name": "自然有机风", "description": "温暖自然的有机风格，大地色系、自然纹理、手工感元素。适合健康品牌、有机食品、环保产品、手工艺品。", "tags": ["ecommerce-retail", "brand-marketing"] },
+    { "id": "modern-gradient", "name": "现代渐变风", "description": "充满活力的现代渐变风格，多彩渐变背景、玻璃质感卡片、动态光影效果。适合创业公司、数字产品、活动页面。", "tags": ["brand-marketing", "ecommerce-retail", "colorful", "gradient"] },
+    { "id": "retro-vintage", "name": "复古怀旧风", "description": "怀旧复古的设计风格，老式排版、复古色调、手工质感元素。适合咖啡馆、复古品牌、独立杂志、音乐厂牌。", "tags": ["creative-expression", "brand-marketing", "retro", "texture-heavy"] },
+    { "id": "dark-mode", "name": "暗黑模式", "description": "优雅的深色界面设计，低对比度层次、微妙的边框和高亮。适合开发工具、专业应用、深夜阅读模式。", "tags": ["portfolio", "saas-b2b", "dark-theme"] },
+    { "id": "macos-vibrancy", "name": "macOS 毛玻璃", "description": "macOS 原生暗色毛玻璃风格。通过多层深灰面板、系统级 backdrop-blur 和极度克制的装饰，还原桌面应用的沉稳质感。", "tags": ["saas-b2b", "dashboard", "dark-theme", "glassmorphic"] },
+    { "id": "geometric-bold", "name": "几何大胆风", "description": "大胆的几何图形设计，强烈的形状对比、鲜明的色块、动态的构图。适合艺术展览、设计机构、创意品牌。", "tags": ["creative-expression", "brand-marketing", "high-contrast", "colorful", "geometric"] },
+    { "id": "masonry-flow", "name": "瀑布流布局", "description": "Pinterest 风格的不等高卡片瀑布流布局，通过 CSS columns 或 masonry grid 实现自然流动的视觉效果。", "tags": ["portfolio", "creative-expression", "responsive"] },
+    { "id": "split-screen", "name": "分屏布局", "description": "左右对称或不对称的分屏布局，通过对比和平衡创造视觉张力，常用于产品展示、品牌故事、比较页面。", "tags": ["brand-marketing", "portfolio", "responsive"] },
+    { "id": "full-page-scroll", "name": "全屏滚动布局", "description": "每一屏占满整个视口的沉浸式滚动体验，通过滚动切换完整场景，适合品牌故事、产品介绍、作品集展示。", "tags": ["brand-marketing", "portfolio"] },
+    { "id": "timeline-vertical", "name": "垂直时间线布局", "description": "垂直时间轴布局，通过连接线串联时间节点，适合展示历史进程、项目里程碑、工作经历、流程步骤。", "tags": ["portfolio", "docs-knowledge-base"] },
+    { "id": "card-stack", "name": "卡片堆叠布局", "description": "卡片前后重叠的立体布局，通过 Z 轴层叠和偏移创造深度感，适合轮播、步骤展示、卡组选择。", "tags": ["brand-marketing", "saas-b2b"] },
+    { "id": "sidebar-fixed", "name": "固定侧边栏布局", "description": "固定位置的侧边导航栏与可滚动主内容区的应用布局，适合后台管理、文档站点、仪表盘、SaaS 应用。", "tags": ["dashboard", "docs-knowledge-base", "responsive"] },
+    { "id": "magazine-grid", "name": "杂志网格布局", "description": "灵感来自印刷杂志的多栏网格布局，通过不同大小的内容块创造丰富的视觉层次，适合新闻、博客、内容聚合。", "tags": ["editorial-magazine", "portfolio", "responsive"] },
+    { "id": "hero-fullscreen", "name": "全屏英雄区布局", "description": "以全屏大图或视频为背景的英雄区布局，通过震撼的视觉效果抓住注意力，适合品牌展示、产品发布、活动宣传。", "tags": ["brand-marketing", "portfolio"] },
+    { "id": "claymorphism", "name": "粘土拟态", "description": "柔软的粘土质感设计，通过超大圆角、内外阴影组合和柔和渐变，创造出可爱的 3D 立体效果。", "tags": ["brand-marketing", "saas-b2b", "glassmorphic"] },
+    { "id": "notion-style", "name": "Notion 风格", "description": "极简清爽的文档工具风格，强调内容可读性和功能性，使用微妙的边框、柔和的悬停效果和清晰的文字层级。", "tags": ["docs-knowledge-base", "dashboard", "brand-inspired"] },
+    { "id": "stripe-style", "name": "Stripe 风格", "description": "精致专业的金融科技风格，以 Stripe 紫为主色调，配合渐变网格背景、精致卡片阴影和流畅动画。", "tags": ["saas-b2b", "ecommerce-retail", "brand-inspired"] }
+  ]
+}
